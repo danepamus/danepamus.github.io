@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pothole Detection - Dane Pamuspusan Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo"><a href="index.html">Dane Pamuspusan</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-detail-header">
+            <div class="container">
+                <h1>Pothole Detection using Faster-RCNN</h1>
+                <p class="project-subtitle">An object detection project focused on identifying road imperfections.</p>
+                <img src="https://placehold.co/800x450/e74c3c/ffffff?text=Pothole+Detection+Image" alt="Main image for Pothole Detection Project">
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="container">
+                <h2>Introduction</h2>
+                <p>This project involved implementing an object detection system using Faster-RCNN in MATLAB to automatically identify potholes on road surfaces. The goal was to develop a robust solution that could assist in road maintenance and improve driving safety by accurately pinpointing areas requiring repair.</p>
+
+                <h2>Project Goals & Features</h2>
+                <p>The primary objectives and features of the Pothole Detection project included:</p>
+                <ul>
+                    <li><strong>Accurate Pothole Identification:</strong> Developing a model capable of distinguishing potholes from other road features and anomalies.</li>
+                    <li><strong>Faster-RCNN Implementation:</strong> Leveraging the Faster-RCNN architecture for efficient and precise object detection.</li>
+                    <li><strong>MATLAB Integration:</strong> Utilizing MATLAB as the primary development environment for model training and deployment.</li>
+                    <li><strong>Image Data Processing:</strong> Handling and preprocessing image datasets of various road conditions to train the detection model effectively.</li>
+                </ul>
+
+                <h2>Technologies Used</h2>
+                <p>The core technologies and tools employed in this project were:</p>
+                <div class="tech-list">
+                    <span>MATLAB</span>
+                    <span>Faster-RCNN</span>
+                    <span>Computer Vision Toolbox</span>
+                    <span>Image Processing</span>
+                    <span>Object Detection</span>
+                </div>
+
+                <h2>Challenges & Solutions</h2>
+                <p>A significant challenge was acquiring a diverse and representative dataset of potholes under varying lighting and weather conditions. This was addressed by augmenting existing datasets and carefully selecting images that captured a wide range of pothole characteristics. Another hurdle was optimizing the Faster-RCNN model for real-time or near real-time detection, which involved fine-tuning hyperparameters and exploring model compression techniques within MATLAB's capabilities.</p>
+
+                <h2>Learnings & Future Enhancements</h2>
+                <p>Through this project, I gained a deeper understanding of object detection algorithms, particularly Faster-RCNN, and practical experience in their implementation using MATLAB. I also enhanced my skills in image preprocessing and model evaluation. Future enhancements could include integrating the system with GPS data for precise location mapping of potholes, deploying the model on embedded systems for in-vehicle detection, and exploring other deep learning architectures for improved accuracy and speed.</p>
+
+                <div class="cta-buttons">
+                    </div>
+
+                <div class="back-to-portfolio">
+                    <a href="index.html#projects" class="btn secondary-btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Dane Pamuspusan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="darkModeToggle" class="dark-mode-toggle floating-btn" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

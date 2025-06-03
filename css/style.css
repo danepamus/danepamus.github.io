@@ -1,0 +1,1071 @@
+/* Variables for easy color changes and theme management */
+:root {
+    /* Light Mode Colors */
+    --primary-bg-light: #f9f9f9; /* Main background color for light mode */
+    --text-color-light: #333333; /* Default text color for light mode */
+    --secondary-bg-light: #ffffff; /* Background for cards, header, etc. in light mode */
+    --border-color-light: #e0e0e0; /* Border color for light mode elements */
+    --button-text-light: #ffffff; /* Text color for primary buttons in light mode */
+
+    /* Accent Color (Your favorite red) */
+    --accent-color: #e74c3c; /* A vibrant, clean red */
+    --accent-hover: #c0392b; /* Slightly darker red for hover effects */
+    --accent-color-rgb: 231, 76, 60; /* RGB values for --accent-color, used for rgba() */
+
+    /* Dark Mode Colors (These will be applied when the 'dark-mode' class is active on body) */
+    --primary-bg-dark: #1a1a1a; /* Main background color for dark mode */
+    --text-color-dark: #eeeeee; /* Default text color for dark mode */
+    --secondary-bg-dark: #2c2c2c; /* Background for cards, header, etc. in dark mode */
+    --border-color-dark: #444444; /* Border color for dark mode elements */
+    --button-text-dark: #ffffff; /* Text color for primary buttons in dark mode */
+}
+
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif; /* Using Inter font as per instructions */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: var(--primary-bg-light);
+    color: var(--text-color-light);
+    /* Smooth transition for theme changes */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode specific styles - applied when body has 'dark-mode' class */
+body.dark-mode {
+    background-color: var(--primary-bg-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-mode header,
+body.dark-mode .project-card,
+body.dark-mode .about-content,
+body.dark-mode .contact-section,
+body.dark-mode .work-experience-section .experience-entry, /* Added for experience section */
+body.dark-mode .contact-form,
+body.dark-mode footer,
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+/* Ensure all sections and main content areas are dark */
+/* Removed: body.dark-mode .hero, */ /* This rule was causing the contrasting box in dark mode */
+body.dark-mode .about-me,
+body.dark-mode .projects-section,
+body.dark-mode .contact-section,
+body.dark-mode .skill-category {
+    background-color: var(--secondary-bg-dark); /* Use secondary dark for most elements */
+    border-color: var(--border-color-dark);
+}
+
+/* Specific adjustments for text and borders in dark mode */
+body.dark-mode a {
+    color: var(--text-color-dark); /* Ensure general links are visible in dark mode */
+}
+
+body.dark-mode a:hover {
+    color: var(--accent-color); /* Maintain accent hover for all links */
+}
+
+/* Revert specific text colors for dark mode */
+body.dark-mode .greeting,
+body.dark-mode .name,
+body.dark-mode .bio-short,
+body.dark-mode .project-card .project-description,
+body.dark-mode .view-more-projects p,
+body.dark-mode .contact-intro,
+body.dark-mode .contact-info p,
+body.dark-mode .form-group label,
+body.dark-mode .skill-category ul li,
+body.dark-mode .work-experience-section .experience-entry p,
+body.dark-mode .work-experience-section .experience-entry li {
+    color: var(--text-color-dark);
+}
+
+/* Container for consistent content width */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styling */
+header {
+    background-color: var(--secondary-bg-light);
+    color: var(--text-color-light);
+    padding: 10px 0; /* Reduced padding for smaller header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Makes header stick to the top */
+    top: 0;
+    z-index: 1000; /* Ensures header is above other content */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom-left-radius: 8px; /* Rounded corners */
+    border-bottom-right-radius: 8px;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+    font-size: 1.6em; /* Slightly smaller logo font */
+    font-weight: bold;
+    color: var(--accent-color); /* Logo in accent red */
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color-light);
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 5px 0; /* Add padding for better click area */
+    position: relative; /* Needed for underline effect */
+}
+
+body.dark-mode nav ul li a {
+    color: var(--text-color-dark);
+}
+
+/* Underline interactivity on hover */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px; /* Position below text */
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease-out; /* Smooth transition for width */
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%; /* Expand underline on hover/active */
+}
+
+nav ul li a:hover,
+nav ul li a.active { /* 'active' class for current section */
+    color: var(--accent-color);
+}
+
+
+/* Dark Mode Toggle Button - Now a floating button */
+.dark-mode-toggle {
+    background-color: var(--accent-color); /* Red background for the button */
+    color: var(--button-text-light); /* White icon */
+    font-size: 1.8em; /* Larger icon */
+    width: 60px; /* Fixed width */
+    height: 60px; /* Fixed height for circular shape */
+    border: none;
+    border-radius: 50%; /* Circular shape */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    z-index: 1001; /* Above header */
+}
+
+body.dark-mode .dark-mode-toggle {
+    background-color: var(--accent-hover); /* Slightly darker red in dark mode */
+    color: var(--button-text-dark);
+}
+
+.dark-mode-toggle:hover {
+    background-color: var(--accent-hover);
+    transform: scale(1.1); /* Slight scale effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating button position */
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+/* General Section Styling */
+section {
+    padding: 80px 0;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--accent-color); /* Section titles in accent red */
+}
+
+/* Hero Section */
+.hero {
+    background-color: transparent; /* Removed background */
+    padding: 60px 0; /* Reduced padding-top for less whitespace */
+    display: flex;
+    align-items: center;
+    text-align: left;
+    transition: background-color 0.3s ease;
+    border-radius: 0; /* Removed border-radius */
+    margin: 0 auto; /* Removed margin */
+    max-width: 1200px; /* Still constrain content width */
+    box-shadow: none; /* Removed box-shadow */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 300px; /* Ensure content doesn't get too narrow */
+    overflow: hidden; /* Crucial to hide text as it animates from below */
+}
+
+/* Hero Text Animation */
+.hero-content .greeting,
+.hero-content .name,
+.hero-content .profession,
+.hero-content .bio-short {
+    opacity: 0; /* Start invisible */
+    transform: translateY(20px); /* Start slightly below */
+    animation: slideInUp 0.8s ease-out forwards; /* Apply animation */
+}
+
+.hero-content .greeting {
+    animation-delay: 0.2s;
+}
+.hero-content .name {
+    animation-delay: 0.4s;
+}
+.hero-content .profession {
+    animation-delay: 0.6s;
+}
+.hero-content .bio-short {
+    animation-delay: 0.8s;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.hero-content .greeting {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--text-color-light);
+}
+
+.hero-content .name {
+    font-size: 4em;
+    margin: 0 0 10px;
+    line-height: 1.1;
+    color: var(--text-color-light);
+}
+
+.hero-content .profession {
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.hero-content .bio-short {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: var(--text-color-light);
+}
+
+.hero-image {
+    flex: 0.8;
+    text-align: center;
+    min-width: 250px; /* Ensure image doesn't get too small */
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* Ensure image covers its area well */
+}
+
+/* Scrolling Ticker Wrapper */
+.scrolling-ticker-wrapper {
+    width: 100%;
+    overflow: hidden; /* Hide overflowing content */
+    margin-top: -20px; /* Pull it up slightly to visually connect with hero */
+    margin-bottom: 40px; /* Space before the next section */
+    position: relative;
+    z-index: 50; /* Ensure it's above other content if needed */
+}
+
+/* Scrolling Ticker Styling */
+.scrolling-ticker {
+    background-color: var(--accent-color); /* Red background */
+    color: var(--button-text-light); /* White text */
+    padding: 10px 0;
+    white-space: nowrap; /* Keep content on a single line */
+    font-size: 1.2em;
+    font-weight: bold;
+    overflow: hidden; /* Crucial for animation */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 10px 0; /* Space between top and bottom tickers */
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+body.dark-mode .scrolling-ticker {
+    background-color: var(--accent-hover); /* Slightly darker red in dark mode */
+}
+
+.ticker-content {
+    display: inline-block; /* Allows content to be wider than its parent */
+    animation: scroll-left 30s linear infinite; /* Default scroll left */
+    /* Ensure content is duplicated in HTML to enable seamless looping */
+    /* Example: <span>Skill 1</span> &bull; <span>Skill 2</span> ... <span>Skill 1</span> &bull; <span>Skill 2</span> */
+}
+
+.top-ticker .ticker-content {
+    animation: scroll-left 30s linear infinite; /* Scrolls left */
+}
+
+.bottom-ticker .ticker-content {
+    animation: scroll-right 30s linear infinite; /* Scrolls right */
+}
+
+.ticker-content span {
+    display: inline-block; /* Treat each skill as a block for spacing */
+    padding: 0 20px; /* Spacing between skills */
+}
+
+/* Keyframe Animations for seamless looping */
+@keyframes scroll-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); } /* Scrolls half the content width */
+}
+
+@keyframes scroll-right {
+    0% { transform: translateX(-50%); } /* Starts half-way through content */
+    100% { transform: translateX(0%); } /* Moves back to start */
+}
+
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
+}
+
+.primary-btn {
+    background-color: var(--accent-color);
+    color: var(--button-text-light);
+    border: 2px solid var(--accent-color);
+    margin-right: 15px;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+
+.secondary-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--button-text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cta-buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Space between buttons */
+}
+
+/* About Me Section */
+.about-me {
+    background-color: var(--primary-bg-light);
+    padding: 80px 0;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.about-content {
+    display: flex;
+    gap: 30px; /* Reduced gap between image and text */
+    align-items: flex-start;
+    background-color: var(--secondary-bg-light);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    flex-wrap: wrap; /* Allow content to wrap */
+    justify-content: center; /* Center items when wrapped */
+}
+
+.about-image {
+    flex: 0 0 200px; /* Reduced fixed width for the image */
+    text-align: center;
+    margin-bottom: 20px; /* Space below image on smaller screens */
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 200px; /* Adjusted max-width */
+    height: auto;
+    border-radius: 50%; /* Circular image */
+    border: 5px solid var(--accent-color); /* Red border around photo */
+    object-fit: cover;
+    aspect-ratio: 1 / 1; /* Ensure it's a perfect circle */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    flex: 2; /* Increased flex ratio to make it wider */
+    min-width: 300px; /* Ensure text doesn't get too narrow */
+}
+
+.about-text p {
+    margin-bottom: 1em; /* Default paragraph spacing */
+}
+
+.about-text h3 {
+    color: var(--accent-color);
+    margin-top: 30px;
+    margin-bottom: 10px; /* Reduced margin-bottom */
+    font-size: 1.5em; /* Adjusted h3 font size */
+    text-align: center; /* Center skills title */
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Force 4 columns */
+    gap: 15px; /* Reduced gap between skill categories */
+    margin-top: 10px; /* Reduced margin-top */
+}
+
+.skill-category {
+    background-color: var(--primary-bg-light);
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px; /* Rounded corners for category boxes */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: left; /* Align skill list text */
+    border: 1px solid var(--border-color-light); /* Subtle border for definition */
+}
+
+body.dark-mode .skill-category {
+    background-color: var(--primary-bg-dark); /* Ensure dark mode background for categories */
+    border-color: var(--border-color-dark);
+}
+
+.skill-category h4 {
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em; /* Slightly smaller category title */
+    text-align: center; /* Center category title */
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow skill badges to wrap */
+    justify-content: center; /* Center skill badges horizontally */
+    gap: 8px; /* Gap between individual skill badges */
+}
+
+.skill-category ul li {
+    margin-bottom: 0; /* Removed individual margin-bottom as gap handles it */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content within the badge */
+    color: var(--text-color-light);
+    background-color: rgba(var(--accent-color-rgb), 0.08); /* Light red tint for badges */
+    padding: 8px 12px; /* Padding for badge appearance */
+    border-radius: 20px; /* More rounded, pill-like shape */
+    font-size: 0.9em; /* Smaller font for badges */
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+body.dark-mode .skill-category ul li {
+    background-color: rgba(var(--accent-color-rgb), 0.15); /* Slightly darker tint in dark mode */
+    color: var(--text-color-dark);
+}
+
+.skill-category ul li i {
+    margin-right: 8px; /* Reduced margin for icon */
+    color: var(--accent-color);
+    font-size: 1em; /* Adjusted icon size */
+}
+
+.view-full-skills {
+    margin-top: 30px;
+    font-size: 1em;
+    color: var(--text-color-light);
+    text-align: center;
+}
+
+.view-full-skills a {
+    color: var(--accent-color);
+    font-weight: bold;
+    text-decoration: underline;
+}
+.view-full-skills a:hover {
+    color: var(--accent-hover);
+}
+
+
+/* Work Experience Section */
+.work-experience-section {
+    background-color: var(--primary-bg-light); /* Changed to primary-bg-light for consistency */
+    padding: 80px 0;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-entry {
+    background-color: var(--secondary-bg-light); /* Changed to secondary-bg-light */
+    border-radius: 8px;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 800px;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .work-experience-section {
+    background-color: var(--primary-bg-dark);
+}
+
+body.dark-mode .experience-entry {
+    background-color: var(--secondary-bg-dark);
+}
+
+.experience-entry h3 {
+    color: var(--accent-color);
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.experience-entry .duration {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .experience-entry .duration {
+    color: #b0b0b0;
+}
+
+.experience-entry ul {
+    list-style: disc;
+    margin-left: 25px;
+    padding: 0;
+    color: var(--text-color-light);
+}
+
+.experience-entry ul li {
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+
+/* Projects Section */
+.projects-section {
+    background-color: var(--primary-bg-light);
+    padding: 80px 0;
+    transition: background-color 0.3s ease;
+}
+
+.projects-section h3 {
+    font-size: 1.8em; /* Adjusted subsection titles */
+    color: var(--accent-color);
+    margin-top: 50px; /* Space between subsections */
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background-color: var(--secondary-bg-light);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistent look */
+    object-fit: cover;
+    display: block;
+}
+
+.project-card h3 {
+    color: var(--accent-color);
+    padding: 15px 20px 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    text-align: left; /* Revert text alignment for project card titles */
+}
+
+.project-card .project-description {
+    padding: 0 20px 15px;
+    color: var(--text-color-light);
+    font-size: 0.95em;
+}
+
+.project-card .project-tech {
+    padding: 0 20px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-card .project-tech span {
+    background-color: rgba(var(--accent-color-rgb), 0.1); /* Transparent red background */
+    color: var(--accent-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.project-card .project-links {
+    padding: 15px 20px 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    border-top: 1px solid var(--border-color-light);
+    transition: border-color 0.3s ease;
+}
+
+.project-btn {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+.project-btn i {
+    margin-right: 8px;
+}
+
+/* Style for disabled project buttons (e.g., for ongoing projects) */
+.project-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #cccccc; /* Grey background */
+    border-color: #cccccc;
+    color: #666666; /* Darker text */
+    box-shadow: none;
+}
+
+.project-btn.disabled:hover {
+    transform: none; /* No hover transform */
+    background-color: #cccccc; /* Keep grey on hover */
+    border-color: #cccccc;
+}
+
+body.dark-mode .project-btn.disabled {
+    background-color: #4a4a4a;
+    border-color: #4a4a4a;
+    color: #999999;
+}
+
+
+.view-more-projects {
+    margin-top: 60px;
+}
+
+.view-more-projects p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: var(--text-color-light);
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--secondary-bg-light);
+    padding: 80px 0;
+    transition: background-color 0.3s ease;
+}
+
+.contact-intro {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: var(--text-color-light);
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: var(--text-color-light);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center contact info */
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.contact-info a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-links a {
+    font-size: 2.5em;
+    color: var(--text-color-light); /* Default color for icons */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Footer Styling */
+footer {
+    background-color: var(--secondary-bg-light);
+    color: var(--text-color-light);
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color-light);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border-top-left-radius: 8px; /* Rounded corners */
+    border-top-right-radius: 8px;
+}
+
+/* Project Detail Page Specific Styles */
+.project-detail-header {
+    background-color: var(--secondary-bg-light);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color-light);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .project-detail-header {
+    background-color: var(--secondary-bg-dark);
+}
+
+.project-detail-header h1 {
+    font-size: 3em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.project-detail-header .project-subtitle {
+    font-size: 1.2em;
+    color: var(--text-color-light);
+    margin-bottom: 20px;
+}
+
+.project-detail-header img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.project-content {
+    background-color: var(--primary-bg-light);
+    padding: 50px 20px;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .project-content {
+    background-color: var(--primary-bg-dark);
+}
+
+.project-content .container {
+    max-width: 900px; /* Slightly narrower for readability */
+    margin: 0 auto;
+}
+
+.project-content h2 {
+    color: var(--accent-color);
+    font-size: 2em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.project-content p {
+    margin-bottom: 1em;
+    color: var(--text-color-light);
+}
+
+.project-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 1em;
+    color: var(--text-color-light);
+}
+
+.project-content ul li {
+    margin-bottom: 0.5em;
+}
+
+.project-content .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.project-content .tech-list span {
+    background-color: rgba(var(--accent-color-rgb), 0.1);
+    color: var(--accent-color);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.project-content .back-to-portfolio {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Dark mode for project detail page */
+body.dark-mode .project-detail-header,
+body.dark-mode .project-content {
+    background-color: var(--primary-bg-dark); /* Use primary dark for main content */
+    border-color: var(--border-color-dark);
+}
+
+body.dark-mode .project-detail-header h1,
+body.dark-mode .project-detail-header .project-subtitle,
+body.dark-mode .project-content h2,
+body.dark-mode .project-content p,
+body.dark-mode .project-content ul li {
+    color: var(--text-color-dark);
+}
+
+
+/* Responsive Design Media Queries */
+@media (max-width: 992px) {
+    .hero .container,
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content, .about-text {
+        flex: none;
+        width: 100%;
+    }
+
+    .hero-image, .about-image {
+        margin-top: 30px;
+        flex: none;
+        width: 100%;
+    }
+
+    .about-image img {
+        margin: 0 auto; /* Center circular image */
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted skill grid for tablets */
+    }
+
+    .project-detail-header h1 {
+        font-size: 2.5em;
+    }
+
+    .project-detail-header img {
+        max-width: 95%;
+    }
+
+    .scrolling-ticker {
+        font-size: 1em; /* Adjust font size for smaller screens */
+        padding: 8px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 10px 10px 10px; /* Adjust spacing for wrapped nav items */
+    }
+
+    .dark-mode-toggle { /* Adjust floating button for smaller screens */
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    section {
+        padding: 60px 0; /* Reduce section padding on smaller screens */
+    }
+
+    section h2 {
+        font-size: 2em;
+    }
+
+    .hero {
+        padding: 80px 0;
+    }
+
+    .hero-content .name {
+        font-size: 3em;
+    }
+
+    .hero-content .profession {
+        font-size: 1.5em;
+    }
+
+    .cta-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 15px;
+    }
+
+    .primary-btn, .secondary-btn {
+        margin-right: 0; /* Remove right margin when stacked */
+        width: 100%; /* Make buttons full width */
+        box-sizing: border-box; /* Include padding in width */
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr; /* Single column layout for projects on smaller screens */
+    }
+
+    .project-detail-header h1 {
+        font-size: 2em;
+    }
+
+    .project-content h2 {
+        font-size: 1.8em;
+    }
+
+    .scrolling-ticker {
+        font-size: 0.9em; /* Further adjust font size for mobile */
+        padding: 6px 0;
+    }
+
+    /* Skills grid for smaller tablets/larger phones */
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px; /* Reduce container padding on very small screens */
+    }
+
+    nav ul li {
+        margin: 0 8px 8px 8px;
+    }
+
+    .hero-content .name {
+        font-size: 2.5em;
+    }
+
+    .hero-content .profession {
+        font-size: 1.3em;
+    }
+
+    .social-links a {
+        font-size: 2em; /* Smaller social icons */
+    }
+
+    /* Skills grid for small phones */
+    .skills-grid {
+        grid-template-columns: 1fr; /* Force single column on very small screens */
+    }
+}
