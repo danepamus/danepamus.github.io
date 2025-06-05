@@ -430,48 +430,62 @@ body.dark-mode .scrolling-ticker {
 /* About Me Section */
 .about-me {
     background-color: var(--primary-bg-light);
-    padding: 80px 0;
+    padding: 20px 0; /* Reduced padding from 80px to 40px */
     text-align: left;
     transition: background-color 0.3s ease;
 }
 
+
 .about-content {
     display: flex;
-    gap: 30px; /* Reduced gap between image and text */
+    gap: 30px;
     align-items: flex-start;
     background-color: var(--secondary-bg-light);
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    flex-wrap: wrap; /* Allow content to wrap */
-    justify-content: center; /* Center items when wrapped */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: row; /* Ensure items are in a row */
 }
 
 .about-image {
-    flex: 0 0 200px; /* Reduced fixed width for the image */
+    flex: 0 0 200px;
     text-align: center;
-    margin-bottom: 20px; /* Space below image on smaller screens */
+    margin-bottom: 0; /* Remove bottom margin */
 }
 
 .about-image img {
     width: 100%;
-    max-width: 200px; /* Adjusted max-width */
+    max-width: 200px;
     height: auto;
-    border-radius: 50%; /* Circular image */
-    border: 5px solid var(--accent-color); /* Red border around photo */
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
     object-fit: cover;
-    aspect-ratio: 1 / 1; /* Ensure it's a perfect circle */
+    aspect-ratio: 1 / 1;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .about-text {
-    flex: 2; /* Increased flex ratio to make it wider */
-    min-width: 300px; /* Ensure text doesn't get too narrow */
+    flex: 1; /* Allow text to take remaining space */
+    text-align: left;
 }
 
 .about-text p {
-    margin-bottom: 1em; /* Default paragraph spacing */
+    margin-bottom: 1em;
+}
+
+.skills-section {
+    width: 100%; /* Make skills section span the full width */
+    margin-top: 30px; /* Add some space between the text and skills */
+}
+
+.skills-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px; /* Reduced margin-bottom */
+    font-size: 1.5em; /* Adjusted h3 font size */
+    text-align: center; /* Center skills title */
 }
 
 .about-text h3 {
@@ -567,7 +581,7 @@ body.dark-mode .skill-category ul li {
 /* Work Experience Section */
 .work-experience-section {
     background-color: var(--primary-bg-light); /* Changed to primary-bg-light for consistency */
-    padding: 80px 0;
+    padding: 20px 0 80px 0; /* Reduced padding from 80px to 40px */
     text-align: center;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -624,9 +638,10 @@ body.dark-mode .experience-entry .duration {
 /* Projects Section */
 .projects-section {
     background-color: var(--primary-bg-light);
-    padding: 80px 0;
+    padding: 20px 0; /* Reduced padding from 80px to 40px */
     transition: background-color 0.3s ease;
 }
+
 
 .projects-section h3 {
     font-size: 1.8em; /* Adjusted subsection titles */
